@@ -1,0 +1,63 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anime World</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#f5f5f5;font:14px Arial,sans-serif}button,input{font:inherit}.wrap{display:grid;grid-template-columns:240px 1fr;min-height:100vh}.side{padding:25px 16px;border-right:1px solid #292929;background:#090909}.logo{font-size:23px;font-weight:900;letter-spacing:2px;margin:4px 10px 35px}.logo i{color:#e51d2a;font-style:normal}.nav button{display:block;width:100%;padding:13px;margin:5px 0;text-align:left;border:0;border-radius:10px;background:transparent;color:#aaa;cursor:pointer}.nav button:hover,.nav button.on{background:#191919;color:#fff;border-left:3px solid #e51d2a}.main{max-width:1450px;width:100%;margin:auto;padding:28px 4vw}.top{display:flex;gap:18px;align-items:center}.search{flex:1;padding:14px 17px;background:#111;border:1px solid #292929;border-radius:12px;color:#999}.user{padding:10px 15px;border:1px solid #292929;border-radius:12px}.hero{margin-top:22px;min-height:300px;border-radius:18px;border:1px solid #343434;padding:34px;background:linear-gradient(90deg,#080808 18%,#080808aa 55%,#4b0c13),url('background-reference.jpg') center/cover;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 45%,#fff2 46%,transparent 48%);pointer-events:none}.red{color:#ed2633;font-weight:800;letter-spacing:2px}.hero h1{font-size:46px;max-width:680px;margin:12px 0}.hero p{max-width:650px;color:#bbb;line-height:1.55}.btn{padding:12px 17px;border:0;border-radius:10px;background:#e51d2a;color:#fff;font-weight:800;cursor:pointer}.btn.alt{background:#1a1a1a;border:1px solid #444}.section{margin-top:30px}.section h2{margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.card{background:#121212;border:1px solid #282828;border-radius:14px;overflow:hidden;cursor:pointer}.poster{height:185px;background:linear-gradient(145deg,#272727,#8e1722 55%,#080808);display:grid;place-items:end start;padding:12px;font-size:22px;font-weight:900}.meta{padding:12px}.muted{color:#999;margin-top:5px;display:block}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{padding:9px 12px;border:1px solid #333;border-radius:99px;background:#111}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#111;border:1px solid #292929;border-radius:14px;padding:16px}.stat b{font-size:24px;display:block;margin-top:5px}.hidden{display:none}.panel{background:#111;border:1px solid #292929;border-radius:16px;padding:22px;margin-top:25px}.field{width:100%;padding:12px;margin:7px 0 14px;background:#0a0a0a;border:1px solid #333;border-radius:9px;color:white}@media(max-width:900px){.wrap{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid #292929}.nav{display:flex;overflow:auto}.nav button{min-width:120px}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:34px}}
+</style>
+<style id="full-image-background-fix">
+html, body {
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  background: #111 url("background-reference.jpg") center center / cover fixed no-repeat !important;
+  background-attachment: fixed !important;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(0,0,0,.18);
+}
+body > * {
+  position: relative;
+}
+main, section, .section, .content, .page, .container {
+  background: transparent !important;
+}
+header, nav, footer {
+  background: rgba(10,10,12,.68) !important;
+  backdrop-filter: blur(10px);
+}
+.card, .panel, .box, .modal, .hero, .anime-card, .anime, .tile {
+  background: rgba(10,10,12,.72) !important;
+  backdrop-filter: blur(8px);
+}
+</style>
+
+</head><body>
+<div class="wrap"><aside class="side"><div class="logo">ANIME <i>WORLD</i></div><div class="nav">
+<button class="on" onclick="show('home',this)">⌂ Главная</button><button onclick="show('catalog',this)">◈ Каталог</button><button onclick="show('fav',this)">★ Избранное</button><button onclick="show('interests',this)">◉ Мои интересы</button><button onclick="show('rating',this)">⚔ Рейтинги</button><button onclick="show('events',this)">♛ События</button><button onclick="show('shop',this)">◫ Магазин</button><button onclick="show('donate',this)">◉ Донат</button><button onclick="show('chat',this)">☵ Чат</button><button onclick="show('profile',this)">◉ Профиль</button><button onclick="show('admin',this)">⚙ Админка</button></div></aside>
+<main class="main"><div class="top"><input class="search" placeholder="⌕ Поиск аниме, жанра или серии..." oninput="filter(this.value)"><div class="user">Shadow · Lv.27</div></div>
+<section id="home"><div class="hero"><div class="red">ANIME WORLD · НОВАЯ СЕРИЯ</div><h1>Твоя история начинается здесь</h1><p>Смотри аниме, собирай XP, открывай достижения и участвуй в событиях.</p><button class="btn">▶ Смотреть</button> <button class="btn alt">＋ В избранное</button></div>
+<div class="section"><h2>Популярное</h2><div class="grid" id="cards"></div></div>
+<div class="section"><h2>Мои интересы</h2><div class="tags"><span class="tag">Экшен</span><span class="tag">Фэнтези</span><span class="tag">Приключения</span><span class="tag">Романтика</span><span class="tag">＋ Добавить жанр</span></div></div>
+<div class="section"><h2>Статистика</h2><div class="stats"><div class="stat">Уровень<b>27</b><span class="muted">6 840 / 10 000 XP</span></div><div class="stat">Просмотрено<b>143</b><span class="muted">серии</span></div><div class="stat">Рейтинг<b>#128</b><span class="muted">в сезоне</span></div><div class="stat">Достижения<b>18</b><span class="muted">открыто</span></div></div></div></section>
+<section id="catalog" class="panel hidden"><h2>Каталог</h2><p class="muted">Карточки редактируются через админку: название, обложка, жанры, описание и любое количество серий.</p><div class="grid" id="catalogCards"></div></section>
+<section id="fav" class="panel hidden"><h2>Избранное</h2><p>Здесь пользователь хранит выбранные аниме отдельно от истории просмотров.</p></section>
+<section id="interests" class="panel hidden"><h2>Мои интересы</h2><p>Выбирай жанры, которые хочешь смотреть в будущем. Они не смешиваются с историей.</p><div class="tags"><span class="tag">Экшен</span><span class="tag">Фэнтези</span><span class="tag">Драма</span><span class="tag">Комедия</span><span class="tag">＋ Добавить</span></div></section>
+<section id="donate" class="panel hidden"><h2>Донат</h2><p>Способы оплаты и прямые ссылки на платёжные системы настраиваются администратором.</p><button class="btn" onclick="alert('Здесь будет переход по ссылке, которую задаст администратор.')">Задонатить</button></section>
+<section id="admin" class="panel hidden"><h2>Админ-панель</h2><p>Концепт управления контентом и реквизитами.</p><label>Название карточки<input class="field" value="Аниме #01"></label><label>Прямая ссылка на оплату<input class="field" placeholder="Вставить ссылку на платёжную систему"></label><label>Реквизиты / инструкция<textarea class="field" rows="4" placeholder="Ваши реквизиты"></textarea></label><button class="btn">Сохранить</button></section>
+<section id="profile" class="panel hidden"><h2>Личный аккаунт</h2><p>Регистрация, аватар, ник, класс, раса, XP, уровни, достижения, история и настройки профиля.</p></section>
+<section id="rating" class="panel hidden"><h2>Рейтинги</h2><p>Рейтинг пользователей, жанров, просмотров, XP и активности.</p></section>
+<section id="events" class="panel hidden"><h2>События</h2><p>Соревнования, ежедневные награды и специальные события.</p></section>
+<section id="shop" class="panel hidden"><h2>Магазин</h2><p>Рамки, предметы, оформление профиля и другие игровые элементы.</p></section>
+<section id="chat" class="panel hidden"><h2>Игровой чат</h2><p>Обсуждения серий и общение пользователей.</p></section>
+</main></div>
+<script>
+const data=['Аниме #01','Аниме #02','Аниме #03','Аниме #04','Аниме #05','Аниме #06','Аниме #07','Аниме #08','Аниме #09','Аниме #10'];
+function cards(el){el.innerHTML=data.map((x,i)=>`<div class="card"><div class="poster">АНИМЕ</div><div class="meta"><b>${x}</b><span class="muted">Серия ${i+1} · ★ 8.${i}</span></div></div>`).join('')}
+cards(document.getElementById('cards'));cards(document.getElementById('catalogCards'));
+function show(id,b){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+function filter(v){document.querySelectorAll('#cards .card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(v.toLowerCase())?'block':'none')}
+</script></body></html>
